@@ -1,4 +1,4 @@
-BodyCheck scans QR codes produced by gym body composition analyzers and displays your measurements in an easy-to-read format. It uses ML Kit for barcode scanning and CameraX for camera integration.
+BodyCheck scans QR codes produced by gym body composition analyzers and displays your measurements in an easy-to-read format.
 
 Features:
 - Scan QR codes with your camera or import from saved images

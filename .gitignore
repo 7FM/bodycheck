@@ -27,3 +27,4 @@ result
 # Keys
 *.jks
 *.keystore
+fdroiddata/

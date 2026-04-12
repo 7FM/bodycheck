@@ -19,11 +19,16 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import com.bodycheck.data.ScanData
 import com.bodycheck.data.ScanDatabase
-import com.google.mlkit.vision.barcode.BarcodeScanning
-import com.google.mlkit.vision.barcode.common.Barcode
-import com.google.mlkit.vision.common.InputImage
+import com.google.zxing.BinaryBitmap
+import com.google.zxing.DecodeHintType
+import com.google.zxing.MultiFormatReader
+import com.google.zxing.RGBLuminanceSource
+import com.google.zxing.common.GlobalHistogramBinarizer
+import com.google.zxing.common.HybridBinarizer
 import org.json.JSONArray
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -170,25 +175,47 @@ class MainActivity : AppCompatActivity() {
 
     private fun decodeQrFromImage(uri: Uri) {
         try {
-            val image = InputImage.fromFilePath(this, uri)
-            val scanner = BarcodeScanning.getClient()
-            scanner.process(image)
-                .addOnSuccessListener { barcodes ->
-                    val qrText = barcodes
-                        .firstOrNull { it.format == Barcode.FORMAT_QR_CODE }
-                        ?.rawValue
-                    if (qrText != null) {
-                        handleQrContent(qrText)
-                    } else {
-                        Toast.makeText(this, R.string.scan_failed, Toast.LENGTH_SHORT).show()
-                    }
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, R.string.scan_failed, Toast.LENGTH_SHORT).show()
-                }
+            val bitmap = loadAndScaleBitmap(uri) ?: run {
+                Toast.makeText(this, R.string.scan_failed, Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val pixels = IntArray(bitmap.width * bitmap.height)
+            bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+            val source = RGBLuminanceSource(bitmap.width, bitmap.height, pixels)
+
+            val hints = mapOf(
+                DecodeHintType.TRY_HARDER to true,
+                DecodeHintType.POSSIBLE_FORMATS to listOf(com.google.zxing.BarcodeFormat.QR_CODE)
+            )
+            val reader = MultiFormatReader().apply { setHints(hints) }
+
+            val result = tryDecode(reader, BinaryBitmap(HybridBinarizer(source)))
+                ?: tryDecode(reader, BinaryBitmap(GlobalHistogramBinarizer(source)))
+                ?: tryDecode(reader, BinaryBitmap(HybridBinarizer(source.invert())))
+
+            if (result != null) {
+                handleQrContent(result.text)
+            } else {
+                Toast.makeText(this, R.string.scan_failed, Toast.LENGTH_SHORT).show()
+            }
         } catch (_: Exception) {
             Toast.makeText(this, R.string.scan_failed, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun tryDecode(reader: MultiFormatReader, bitmap: BinaryBitmap): com.google.zxing.Result? {
+        return try { reader.decodeWithState(bitmap) } catch (_: Exception) { null } finally { reader.reset() }
+    }
+
+    private fun loadAndScaleBitmap(uri: Uri): Bitmap? {
+        val opts = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, opts) }
+        if (opts.outWidth <= 0 || opts.outHeight <= 0) return null
+        var sampleSize = 1
+        while (opts.outWidth / sampleSize > 1500 || opts.outHeight / sampleSize > 1500) sampleSize *= 2
+        val decodeOpts = BitmapFactory.Options().apply { inSampleSize = sampleSize }
+        return contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, decodeOpts) }
     }
 
     private fun handleQrContent(content: String) {

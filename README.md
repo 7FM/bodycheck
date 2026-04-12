@@ -9,7 +9,7 @@ A lightweight Android app for scanning and visualizing body composition data fro
 - **History** -- Track your body composition over time with stored scan history
 - **Export/Import** -- Transfer your data between devices via JSON backup
 - **Offline** -- No internet connection required, all data stays on your device
-- **Small** -- ~7 MB APK (arm64-v8a) or ~5.5 MB (armeabi-v7a); per-ABI APK splits are enabled
+- **Small** -- ~1 MB release APK
 
 ## Supported Measurements
 
@@ -63,8 +63,8 @@ The release APK will be at `app/build/outputs/apk/release/app-release-unsigned.a
 ## Tech Stack
 
 - **Kotlin** with XML layouts (no Jetpack Compose)
-- **ML Kit** for barcode scanning
-- **CameraX** for camera integration
+- **ZXing** for QR code decoding
+- **CameraX** for live camera preview
 - **SQLite** for local scan history
 - **Custom Canvas views** for all visualizations
 - **AGP 8.7.3**, **Kotlin 2.1.10**, **Gradle 8.12.1**
