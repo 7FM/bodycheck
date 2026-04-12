@@ -1,0 +1,29 @@
+# Build outputs
+build/
+.gradle/
+.kotlin/
+local.properties
+
+# IDE
+.idea/
+*.iml
+
+# Workspace
+_workspace/
+
+# Gradle wrapper (Gradle provided by Nix)
+gradlew
+gradlew.bat
+gradle/
+
+# Nix
+.direnv/
+result
+
+# OS
+.DS_Store
+*.swp
+
+# Keys
+*.jks
+*.keystore

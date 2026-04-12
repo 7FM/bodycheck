@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#1976D2</color>
+    <color name="primary_dark">#1565C0</color>
+    <color name="primary_female">#E91E63</color>
+    <color name="primary_dark_female">#C2185B</color>
+    <color name="accent">#FF9800</color>
+    <color name="background">#FAFAFA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="divider">#BDBDBD</color>
+
+    <!-- Gauge colors -->
+    <color name="gauge_weight">#1976D2</color>
+    <color name="gauge_body_water">#00BCD4</color>
+    <color name="gauge_body_fat">#FF9800</color>
+    <color name="gauge_skeletal_muscle">#4CAF50</color>
+    <color name="gauge_protein">#9C27B0</color>
+    <color name="gauge_bmr">#F44336</color>
+    <color name="gauge_bio_age">#009688</color>
+    <color name="gauge_health_score">#FFC107</color>
+</resources>

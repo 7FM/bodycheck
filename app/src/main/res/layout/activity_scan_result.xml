@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/background">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:titleTextColor="#FFFFFF" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Date -->
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="16dp" />
+
+        <!-- Row 1 of gauges: Weight, Body Water, Body Fat, Skeletal Muscle -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline75"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <!-- Row 1 Labels -->
+            <TextView
+                android:id="@+id/labelWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Weight"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline25"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.bodycheck.view.CircularGaugeView
+                android:id="@+id/gaugeWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline25"
+                app:layout_constraintTop_toBottomOf="@id/labelWeight" />
+
+            <TextView
+                android:id="@+id/labelWater"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Body Water"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@id/guideline25"
+                app:layout_constraintEnd_toStartOf="@id/guideline50"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.bodycheck.view.CircularGaugeView
+                android:id="@+id/gaugeWater"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/guideline25"
+                app:layout_constraintEnd_toStartOf="@id/guideline50"
+                app:layout_constraintTop_toBottomOf="@id/labelWater" />
+
+            <TextView
+                android:id="@+id/labelFat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Body Fat"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@id/guideline50"
+                app:layout_constraintEnd_toStartOf="@id/guideline75"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.bodycheck.view.CircularGaugeView
+                android:id="@+id/gaugeFat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/guideline50"
+                app:layout_constraintEnd_toStartOf="@id/guideline75"
+                app:layout_constraintTop_toBottomOf="@id/labelFat" />
+
+            <TextView
+                android:id="@+id/labelMuscle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Skeletal Muscle"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@id/guideline75"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.bodycheck.view.CircularGaugeView
+                android:id="@+id/gaugeMuscle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/guideline75"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelMuscle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Row 2 of gauges: Protein, BMR, Bio Age, Health Score -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline25b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline50b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline75b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <TextView
+                android:id="@+id/labelProtein"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Muscle Protein"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline25b"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.bodycheck.view.CircularGaugeView
+                android:id="@+id/gaugeProtein"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline25b"
+                app:layout_constraintTop_toBottomOf="@id/labelProtein" />
+
+            <TextView
+                android:id="@+id/labelVisceralFat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Visceral Fat"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@id/guideline25b"
+                app:layout_constraintEnd_toStartOf="@id/guideline50b"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.bodycheck.view.CircularGaugeView
+                android:id="@+id/gaugeVisceralFat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/guideline25b"
+                app:layout_constraintEnd_toStartOf="@id/guideline50b"
+                app:layout_constraintTop_toBottomOf="@id/labelVisceralFat" />
+
+            <TextView
+                android:id="@+id/labelBioAge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Bio Age"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@id/guideline50b"
+                app:layout_constraintEnd_toStartOf="@id/guideline75b"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.bodycheck.view.CircularGaugeView
+                android:id="@+id/gaugeBioAge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/guideline50b"
+                app:layout_constraintEnd_toStartOf="@id/guideline75b"
+                app:layout_constraintTop_toBottomOf="@id/labelBioAge" />
+
+            <TextView
+                android:id="@+id/labelMetabolic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Metabolic"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@id/guideline75b"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.bodycheck.view.CircularGaugeView
+                android:id="@+id/gaugeMetabolic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/guideline75b"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelMetabolic" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- BMI Bar -->
+        <TextView
+            android:id="@+id/tvBmiLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <com.bodycheck.view.BmiBarView
+            android:id="@+id/bmiBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="24dp" />
+
+        <!-- Health Score -->
+        <TextView
+            android:id="@+id/tvHealthScoreTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/health_score_label"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:paddingBottom="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp">
+
+            <ProgressBar
+                android:id="@+id/healthScoreProgress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:max="100"
+                android:progressDrawable="@drawable/health_score_progress" />
+
+            <TextView
+                android:id="@+id/tvHealthScoreValue"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:shadowColor="#66000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="2dp"
+            android:paddingBottom="24dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1"
+                android:textSize="12sp"
+                android:textColor="@color/text_secondary" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="50"
+                android:textSize="12sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="100"
+                android:textSize="12sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="end" />
+        </LinearLayout>
+
+        <!-- Body Type Matrix -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/body_type_label"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <GridLayout
+            android:id="@+id/bodyTypeMatrix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="3"
+            android:paddingBottom="24dp">
+
+            <TextView android:id="@+id/matrixA1" android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="@string/body_type_athlete" android:gravity="center" android:padding="4dp" android:textSize="10sp" android:layout_margin="1dp" android:background="@color/surface" />
+            <TextView android:id="@+id/matrixA2" android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="@string/body_type_overweight_muscle" android:gravity="center" android:padding="4dp" android:textSize="10sp" android:layout_margin="1dp" android:background="@color/surface" />
+            <TextView android:id="@+id/matrixA3" android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="@string/body_type_obesity" android:gravity="center" android:padding="4dp" android:textSize="10sp" android:layout_margin="1dp" android:background="@color/surface" />
+
+            <TextView android:id="@+id/matrixB1" android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="@string/body_type_low_fat_firm" android:gravity="center" android:padding="4dp" android:textSize="10sp" android:layout_margin="1dp" android:background="@color/surface" />
+            <TextView android:id="@+id/matrixB2" android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="@string/body_type_standard" android:gravity="center" android:padding="4dp" android:textSize="10sp" android:layout_margin="1dp" android:background="@color/surface" />
+            <TextView android:id="@+id/matrixB3" android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="@string/body_type_fat_beyond" android:gravity="center" android:padding="4dp" android:textSize="10sp" android:layout_margin="1dp" android:background="@color/surface" />
+
+            <TextView android:id="@+id/matrixC1" android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="@string/body_type_low_fat_light" android:gravity="center" android:padding="4dp" android:textSize="10sp" android:layout_margin="1dp" android:background="@color/surface" />
+            <TextView android:id="@+id/matrixC2" android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="@string/body_type_standard_light" android:gravity="center" android:padding="4dp" android:textSize="10sp" android:layout_margin="1dp" android:background="@color/surface" />
+            <TextView android:id="@+id/matrixC3" android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="@string/body_type_potential_obesity" android:gravity="center" android:padding="4dp" android:textSize="10sp" android:layout_margin="1dp" android:background="@color/surface" />
+        </GridLayout>
+
+        <!-- Lean Mass Distribution -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lean_mass_distribution"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <com.bodycheck.view.BodyHumanView
+            android:id="@+id/bodyLeanMass"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:paddingBottom="24dp" />
+
+        <!-- Fat Mass Distribution -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fat_mass_distribution"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <com.bodycheck.view.BodyHumanView
+            android:id="@+id/bodyFatMass"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:paddingBottom="24dp" />
+
+        <!-- Segmental Ratings -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/segmental_lean_rating"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btnToggleRatingMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/primary"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/leanRadarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/segmental_fat_rating"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <LinearLayout
+            android:id="@+id/fatRadarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp" />
+
+        <!-- Raw Data (expandable) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvRawDataToggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/raw_data"
+                android:textSize="16sp"
+                android:textColor="@color/primary"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground" />
+
+            <TextView
+                android:id="@+id/tvRawData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:padding="8dp"
+                android:textSize="12sp"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="monospace"
+                android:lineSpacingMultiplier="1.3" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>

@@ -1,0 +1,5 @@
+Initial release:
+• QR code scanning via camera and image import
+• Body composition visualization with gauges, BMI bar, and body figure
+• Scan history with export/import
+• Data validation and sanity checks

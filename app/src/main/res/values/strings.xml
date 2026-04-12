@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BodyCheck</string>
+    <string name="scan_qr">Scan QR Code</string>
+    <string name="import_image">Import from Image</string>
+    <string name="history">History</string>
+    <string name="trends">Trends</string>
+    <string name="scan_result">Scan Result</string>
+    <string name="lean_mass_distribution">Lean Mass Distribution</string>
+    <string name="fat_mass_distribution">Fat Mass Distribution</string>
+    <string name="raw_data">Raw Data</string>
+    <string name="no_scans_yet">No scans yet. Scan a QR code to get started.</string>
+    <string name="delete_scan">Delete Scan</string>
+    <string name="delete_scan_confirm">Are you sure you want to delete this scan?</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="weight_label">Weight</string>
+    <string name="bmi_label">BMI</string>
+    <string name="health_score_label">Health Score</string>
+    <string name="scan_failed">Could not read QR code from image</string>
+    <string name="parse_failed">QR code does not contain valid scan data</string>
+    <string name="camera_permission_required">Camera permission is required to scan QR codes</string>
+    <string name="export_data">Export Data</string>
+    <string name="import_data">Import Data</string>
+    <string name="export_success">Exported %d scans</string>
+    <string name="import_success">Imported %d scans</string>
+    <string name="export_failed">Export failed</string>
+    <string name="import_failed">Import failed</string>
+
+    <string name="weight_desc">Indicates the total body weight. Body weight can fluctuate daily and alone does not provide any information about changes in muscle mass and body fat percentage.</string>
+    <string name="body_water_desc">There is water in the body both inside and outside the body\'s cells. An adult\'s body is made up of 45%–65% water. The level of the share is influenced by various factors, such as age and gender. Large deviations in the body water between two measurements can influence the measurement results. A constant fluid balance should be provided for optimal comparability.</string>
+    <string name="body_fat_desc">This value describes the total fat mass in the body. The higher the value, the greater the risk of diseases such as diabetes. If you lose weight, this value should decrease and muscle mass should be maintained.</string>
+    <string name="skeletal_muscle_desc">Skeletal muscles are the muscles that are primarily responsible for voluntary, active body movements, such as the movement of arms and legs.</string>
+    <string name="muscle_protein_desc">This value indicates the pure muscle mass without the water content. This value can be increased through intensive strength training and a sufficient intake of nutritional protein.</string>
+    <string name="visceral_fat_desc">Excess fatty tissue on the abdomen is referred to as visceral fat. This accumulates around the internal organs and is particularly unhealthy. The more belly fat, the greater the risk of cardiovascular disease and diabetes.</string>
+    <string name="bioage_desc">The biological age relates to the physical condition. This can be positively influenced by a healthy lifestyle and reduces biological age.</string>
+    <string name="metabolic_desc">The basal metabolic rate shows the calorie consumption at rest. The body burns this amount of calories in just 24 hours in order to maintain all functions necessary for survival.</string>
+    <string name="health_score_desc">The Health Score is a summary of your measurement. It puts your measurement results in relation and evaluates them using valid standard values that relate to your gender and height. The higher your health score, the healthier your body is according to the general criteria for body water, muscle protein, body fat and bone mineral content.</string>
+    <string name="body_type_label">Body Type</string>
+    <string name="body_type_athlete">Athlete</string>
+    <string name="body_type_overweight_muscle">Overweight Muscle Type</string>
+    <string name="body_type_obesity">Obesity</string>
+    <string name="body_type_low_fat_firm">Low-fat firm type</string>
+    <string name="body_type_standard">Standard</string>
+    <string name="body_type_fat_beyond">Fat beyond standard</string>
+    <string name="body_type_low_fat_light">Low fat and light weight</string>
+    <string name="body_type_standard_light">Standard light weight</string>
+    <string name="body_type_potential_obesity">Potentially obese</string>
+    <string name="segmental_lean_rating">Segmental Lean Mass Rating</string>
+    <string name="segmental_fat_rating">Segmental Fat Mass Rating</string>
+    <string name="theme">Theme</string>
+</resources>

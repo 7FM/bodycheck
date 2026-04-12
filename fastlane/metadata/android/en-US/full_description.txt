@@ -1,0 +1,13 @@
+BodyCheck scans QR codes produced by gym body composition analyzers and displays your measurements in an easy-to-read format. It uses ML Kit for barcode scanning and CameraX for camera integration.
+
+Features:
+- Scan QR codes with your camera or import from saved images
+- View weight, BMI, body fat %, skeletal muscle mass, body water, protein, BMR, biological age, and health score
+- See lean and fat mass distribution across body segments (arms, trunk, legs)
+- Track your body composition history over time
+- Export and import your data for backup or device transfers
+- Completely offline -- no internet connection required
+
+The app reads QR codes containing body composition data as a JSON array of numeric measurements. It supports arrays of 63, 64, or 95 values and validates that key metrics fall within physiologically plausible ranges.
+
+All data is stored locally on your device. No data is ever sent to any server. No analytics or tracking.
