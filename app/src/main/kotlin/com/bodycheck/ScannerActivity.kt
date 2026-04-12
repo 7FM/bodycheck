@@ -11,23 +11,12 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-import com.google.zxing.BinaryBitmap
-import com.google.zxing.DecodeHintType
-import com.google.zxing.MultiFormatReader
-import com.google.zxing.PlanarYUVLuminanceSource
-import com.google.zxing.common.HybridBinarizer
 import java.util.concurrent.atomic.AtomicBoolean
 
 class ScannerActivity : AppCompatActivity() {
 
     private lateinit var previewView: PreviewView
     private val found = AtomicBoolean(false)
-    private val reader = MultiFormatReader().apply {
-        setHints(mapOf(
-            DecodeHintType.POSSIBLE_FORMATS to listOf(com.google.zxing.BarcodeFormat.QR_CODE),
-            DecodeHintType.TRY_HARDER to true
-        ))
-    }
 
     companion object {
         const val EXTRA_QR_TEXT = "qr_text"
@@ -74,26 +63,13 @@ class ScannerActivity : AppCompatActivity() {
         }
 
         try {
-            val buffer = imageProxy.planes[0].buffer
-            val bytes = ByteArray(buffer.remaining())
-            buffer.get(bytes)
-
-            val source = PlanarYUVLuminanceSource(
-                bytes, imageProxy.width, imageProxy.height,
-                0, 0, imageProxy.width, imageProxy.height, false
-            )
-            val bitmap = BinaryBitmap(HybridBinarizer(source))
-            val result = reader.decodeWithState(bitmap)
-
-            if (found.compareAndSet(false, true)) {
+            val result = QrDecoderImpl.decodeFromCameraFrame(imageProxy)
+            if (result != null && found.compareAndSet(false, true)) {
                 cameraProvider.unbindAll()
-                setResult(RESULT_OK, Intent().apply { putExtra(EXTRA_QR_TEXT, result.text) })
+                setResult(RESULT_OK, Intent().apply { putExtra(EXTRA_QR_TEXT, result) })
                 finish()
             }
-        } catch (_: Exception) {
-            // No QR found in this frame — normal, keep scanning
         } finally {
-            reader.reset()
             imageProxy.close()
         }
     }

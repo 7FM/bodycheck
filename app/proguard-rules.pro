@@ -1,1 +1,2 @@
 -keep class com.bodycheck.backup.BodyCheckBackupAgent { *; }
+-dontwarn com.google.zxing.**
