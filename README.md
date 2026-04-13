@@ -51,14 +51,14 @@ Requirements:
 ```bash
 # Using the Nix flake (recommended):
 nix develop
-gradle assembleRelease
+./gradlew assembleRelease
 
 # Or with a local Android SDK:
 export ANDROID_HOME=/path/to/sdk
-gradle assembleRelease
+./gradlew assembleRelease
 ```
 
-The release APK will be at `app/build/outputs/apk/release/app-release-unsigned.apk`.
+The release APKs will be at `app/build/outputs/apk/foss/release/` and `app/build/outputs/apk/full/release/`.
 
 ## Tech Stack
 

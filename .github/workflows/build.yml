@@ -25,10 +25,10 @@ jobs:
         run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Build Release APK
-        run: gradle assembleRelease
+        run: ./gradlew assembleFossRelease assembleFullRelease
 
       - name: Upload APK artifacts
         uses: actions/upload-artifact@v4
         with:
           name: apk
-          path: app/build/outputs/apk/release/*.apk
+          path: app/build/outputs/apk/*/release/*.apk

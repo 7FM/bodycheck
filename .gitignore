@@ -11,10 +11,6 @@ local.properties
 # Workspace
 _workspace/
 
-# Gradle wrapper (Gradle provided by Nix)
-gradlew
-gradlew.bat
-gradle/
 
 # Nix
 .direnv/
@@ -28,3 +24,4 @@ result
 *.jks
 *.keystore
 fdroiddata/
+job.log
