@@ -11,12 +11,13 @@ jobs:
       image: registry.gitlab.com/fdroid/fdroidserver:buildserver-trixie
     permissions:
       contents: write
+    env:
+      ANDROID_HOME: /opt/android-sdk
     steps:
       - uses: actions/checkout@v4
 
       - name: Build FOSS release APK (reproducible with F-Droid)
         run: |
-          export ANDROID_HOME=/opt/android-sdk
           yes | sdkmanager --licenses 2>/dev/null || true
           ./gradlew assembleFossRelease
 
@@ -30,7 +31,6 @@ jobs:
 
       - name: Build and sign Full release APK
         run: |
-          export ANDROID_HOME=/opt/android-sdk
           ./gradlew assembleFullRelease
           BUILD_TOOLS=$ANDROID_HOME/build-tools/$(ls $ANDROID_HOME/build-tools/ | sort -V | tail -1)
           $BUILD_TOOLS/apksigner sign --ks keystore.jks --ks-key-alias ${{ secrets.KEY_ALIAS }} --ks-pass pass:"${{ secrets.KEYSTORE_PASSWORD }}" --key-pass pass:"${{ secrets.KEY_PASSWORD }}" --out app-full-release.apk app/build/outputs/apk/full/release/app-full-release-unsigned.apk
