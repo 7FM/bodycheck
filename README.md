@@ -46,7 +46,7 @@ Valid array lengths are 63, 64, or 95 elements. The 95-element format includes e
 
 Requirements:
 - JDK 21+
-- Android SDK (platform 35, build-tools 35.0.0)
+- Android SDK (platform 36, build-tools 36.0.0)
 
 ```bash
 # Using the Nix flake (recommended):
@@ -67,8 +67,8 @@ The release APKs will be at `app/build/outputs/apk/foss/release/` and `app/build
 - **CameraX** for live camera preview
 - **SQLite** for local scan history
 - **Custom Canvas views** for all visualizations
-- **AGP 8.7.3**, **Kotlin 2.1.10**, **Gradle 8.12.1**
-- Target SDK 35 (Android 15), min SDK 24 (Android 7.0)
+- **AGP 8.9.3**, **Kotlin 2.1.10**, **Gradle 9.4.1**
+- Compile SDK 36, Target SDK 35, min SDK 24 (Android 7.0)
 
 ## Privacy
 
