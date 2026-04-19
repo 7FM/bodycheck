@@ -52,7 +52,7 @@ dependencies {
     implementation("androidx.camera:camera-view:1.6.0")
 
     // FOSS flavor: ZXing (Apache 2.0, F-Droid compatible)
-    "fossImplementation"("com.google.zxing:core:3.5.3")
+    "fossImplementation"("com.google.zxing:core:3.5.4")
 
     // Full flavor: ML Kit (proprietary, better accuracy)
     "fullImplementation"("com.google.mlkit:barcode-scanning:17.3.0")
