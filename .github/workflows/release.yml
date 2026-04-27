@@ -40,7 +40,7 @@ jobs:
         run: rm -f keystore.jks
 
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             app-foss-release.apk
