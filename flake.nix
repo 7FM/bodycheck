@@ -20,10 +20,10 @@
 
         gradle = pkgs.stdenv.mkDerivation rec {
           pname = "gradle";
-          version = "9.4.1";
+          version = "9.5.0";
           src = pkgs.fetchurl {
             url = "https://services.gradle.org/distributions/gradle-${version}-bin.zip";
-            sha256 = "sha256-KrKVjyoeURIMMmytbzhRU7sR7pOzwhbF/M6/37t+xss=";
+            sha256 = "sha256-VTx49Q2vzVTWW5pERkkFeFdGnt+DZDE4lpVghTbWt0Y=";
           };
           nativeBuildInputs = [ pkgs.unzip pkgs.makeWrapper ];
           unpackPhase = "unzip $src";
