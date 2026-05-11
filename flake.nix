@@ -40,6 +40,15 @@
           platformVersions = [ "36" ];
           abiVersions = [ "armeabi-v7a" "arm64-v8a" ];
         };
+
+        androidEmu = pkgs.androidenv.composeAndroidPackages {
+          buildToolsVersions = [ "36.0.0" ];
+          platformVersions = [ "36" ];
+          abiVersions = [ "x86_64" ];
+          includeEmulator = true;
+          includeSystemImages = true;
+          systemImageTypes = [ "google_apis" ];
+        };
       in
       {
         devShells.default = pkgs.mkShell {
@@ -51,6 +60,20 @@
           ];
           ANDROID_SDK_ROOT = "${android.androidsdk}/libexec/android-sdk";
           ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
+          JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
+        };
+
+        devShells.emulator = pkgs.mkShell {
+          packages = [
+            pkgs.jdk21
+            gradle
+            pkgs.android-tools
+            pkgs.qrencode
+            pkgs.imagemagick
+            androidEmu.androidsdk
+          ];
+          ANDROID_SDK_ROOT = "${androidEmu.androidsdk}/libexec/android-sdk";
+          ANDROID_HOME = "${androidEmu.androidsdk}/libexec/android-sdk";
           JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
         };
       }
