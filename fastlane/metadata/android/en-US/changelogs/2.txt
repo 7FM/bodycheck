@@ -1,0 +1,4 @@
+• Add store screenshots (Fastlane phoneScreenshots)
+• Bump CameraX to 1.6.1 and ZXing to 3.5.4
+• Bump AGP to 8.9.3, compileSdk 36, Gradle 9.5.0
+• Bump AppCompat 1.7.1, RecyclerView 1.4.0, ConstraintLayout 2.2.1
